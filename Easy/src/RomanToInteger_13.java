@@ -10,7 +10,7 @@ public class RomanToInteger_13{
         test(romanToInt("MCMXCIV"), 1994);
     }
 
-    private static int romanToInt(String s) {
+    public static int romanToInt(String s) {
 
         int result  = 0;
         int current = 0;
@@ -36,7 +36,6 @@ public class RomanToInteger_13{
 
         return result;
     }
-
 
     private static void test(int actual, int expected) {
         if (actual != expected) System.err.println(actual + " != " + expected);
