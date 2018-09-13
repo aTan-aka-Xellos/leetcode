@@ -18,20 +18,14 @@ public class TwoSum_1 {
 
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
+
             first = map.get(target - nums[i]);
-            if (first != null && first != i) return new int[]{first, i};
+            if (first != null && first != i)
+                return new int[]{first, i};
+
             map.put(nums[i], i);
         }
-
-        int remain;
-
-        for (int j = 0; j < nums.length; j++) {
-            remain = target - nums[j];
-            first = map.get(remain);
-            if (first != null && first != j) return new int[]{j, first};
-        }
-
-        return new int[2];
+        return null;
     }
 
     private static void test(int actual, int expected) {
