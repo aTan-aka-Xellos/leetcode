@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class SmallestRangeI {
+public class SmallestRangeI_908 {
 
     public static void main(String[] args) {
 
