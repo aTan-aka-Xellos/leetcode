@@ -18,13 +18,12 @@ public class GuessNumber_374 {
         assertEquals(found, RANDOM);
     }
 
-    // TODO: has a bug, almost always use 30 guesses
     public static int guessNumber(int n) {
         int guess, mid, lo = 0, hi = n;
 
         while (lo < hi) {
             mid = lo + (hi - lo) / 2;
-            System.out.println(lo + " " + hi + " " + mid);
+            System.out.println("lo: " + lo + " hi: " + hi + " mid: " + mid);
             guess = guess(mid);
             if (guess == 0) {
                 return mid;
@@ -37,7 +36,6 @@ public class GuessNumber_374 {
 
     private static int guess(int guess) {
         count++;
-        System.out.println("Guess: " + guess);
         return Integer.compare(RANDOM, guess);
     }
 
