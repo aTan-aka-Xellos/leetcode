@@ -1,3 +1,5 @@
+package bs.easy;
+
 import static java.lang.Math.abs;
 
 import java.util.Random;

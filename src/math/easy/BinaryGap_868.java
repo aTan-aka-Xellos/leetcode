@@ -1,3 +1,5 @@
+package math.easy;
+
 public class BinaryGap_868 {
 
     public static void main(String[] args) {

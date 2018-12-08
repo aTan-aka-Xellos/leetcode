@@ -1,3 +1,5 @@
+package bs.easy;
+
 public class Sqrt_69 {
 
     public static void main(String[] args) {

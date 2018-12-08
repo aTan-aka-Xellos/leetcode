@@ -1,3 +1,5 @@
+package others.easy;
+
 import java.util.*;
 
 /**

@@ -1,3 +1,5 @@
+package math.easy;
+
 public class ProjectionAreaOf3dShapes_883 {
 
     public static void main(String[] args) {

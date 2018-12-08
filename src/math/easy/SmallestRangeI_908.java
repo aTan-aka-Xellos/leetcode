@@ -1,3 +1,5 @@
+package math.easy;
+
 import java.util.Arrays;
 
 public class SmallestRangeI_908 {

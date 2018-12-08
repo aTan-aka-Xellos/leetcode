@@ -1,3 +1,5 @@
+package math.easy;
+
 /**
  * https://leetcode.com/problems/reverse-integer/description/
  */
