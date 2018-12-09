@@ -5,6 +5,7 @@ public class FindPeakElement_162 {
     public static void main(String[] args) {
         assertEquals(findPeakElement(new int[]{1, 2, 3, 1}), 2);
         assertEquals(findPeakElement(new int[]{1, 2, 1, 3, 5, 6, 4}), 1);
+        assertEquals(findPeakElement(new int[]{1, 10, 3, 4, 5, 6, 7, 8, 9, 10}), 1);
     }
 
     public static int findPeakElement(int[] nums) {
