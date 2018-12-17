@@ -1,4 +1,4 @@
-package tree.easy;
+package tree.medium;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -26,6 +26,8 @@ public class BinaryTreePreorderTraversal_144 {
           int val;
         TreeNode left;
         TreeNode right;
-        TreeNode(int x) { val = x; }
+        TreeNode(int x) {
+            val = x;
+        }
     }
 }
