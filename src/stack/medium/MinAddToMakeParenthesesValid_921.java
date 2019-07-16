@@ -9,7 +9,7 @@ import java.util.Stack;
  * Time complexity: O(N)
  * Space complexity: O(N)
  */
-public class MinAddToMakeValid_921 {
+public class MinAddToMakeParenthesesValid_921 {
 
     /**
      * With stack;
