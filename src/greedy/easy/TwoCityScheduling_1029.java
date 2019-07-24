@@ -15,6 +15,7 @@ public class TwoCityScheduling_1029 {
      */
     public int twoCitySchedCost(int[][] costs) {
 
+        // This is too slow
         // Arrays.sort(costs, Comparator.comparingInt(a -> a[0] - a[1]));
 
         // sort by difference in the schedule between A and B
@@ -31,6 +32,7 @@ public class TwoCityScheduling_1029 {
     }
 
     /**
+     * min(sum(A1+B2)) = min(sum(A1+A2-A2+B2)) = min(sum(A - (A2-B2)))
      * https://leetcode.com/problems/two-city-scheduling/discuss/285099
      * Execution time: 1 ms
      */
