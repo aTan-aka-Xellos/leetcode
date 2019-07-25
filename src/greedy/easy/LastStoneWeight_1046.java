@@ -1,14 +1,33 @@
 package greedy.easy;
 
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 /**
  * https://leetcode.com/problems/last-stone-weight
- * Time complexity: O(N * N logN) - not 100% sure
- * Space complexity: O(1)
  */
 public class LastStoneWeight_1046 {
 
+
+    /**
+     * Time complexity: O(N logN)
+     * Iterate over N elements, offer into queue is logN
+     */
+    public int _lastStoneWeight(int[] stones) {
+
+        PriorityQueue<Integer> queue = new PriorityQueue<>((a, b) -> b - a);
+        for (int stone : stones) queue.add(stone);
+
+        while (queue.size() > 1) {
+            queue.offer(queue.poll() - queue.poll());
+        }
+        return queue.poll();
+    }
+
+    /**
+     * Time complexity: O(N * N logN) - not 100% sure
+     * Space complexity: O(1)
+     */
     public int lastStoneWeight(int[] stones) {
 
         while (stones.length > 1) {
