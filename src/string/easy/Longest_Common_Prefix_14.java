@@ -33,6 +33,25 @@ public class Longest_Common_Prefix_14 {
         return pref;
     }
 
+    public String longestCommonPrefix_2019(String[] strs) {
+
+        if (strs.length == 0) return "";
+        if (strs.length == 1) return strs[0];
+
+        String prefix = "";
+
+        for (int index = 0; ; index++) {
+            for (int i = 1; i < strs.length; i++) {
+
+                if (Math.min(strs[i].length(), strs[i - 1].length()) <= index
+                    || strs[i].charAt(index) != strs[i - 1].charAt(index)) {
+                    return prefix;
+                }
+            }
+            prefix += strs[0].charAt(index);
+        }
+    }
+
     private static void test(String actual, String expected) {
         if (!actual.equals(expected)) throw new RuntimeException(actual + " != " + expected);
     }
