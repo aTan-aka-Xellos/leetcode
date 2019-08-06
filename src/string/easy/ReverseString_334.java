@@ -2,6 +2,24 @@ package string.easy;
 
 public class ReverseString_334 {
 
+    /**
+     * https://leetcode.com/explore/featured/card/recursion-i/250/principle-of-recursion/1440/
+     */
+    public void reverseString_recursive(char[] s) {
+        move(0, s);
+    }
+
+    private void move(int index, char[] s) {
+        if (s == null || index >= s.length / 2) return;
+
+        move(index + 1, s);
+
+        char temp = s[index];
+        s[index] = s[s.length - index - 1];
+        s[s.length - index - 1] = temp;
+    }
+
+
     public String reverseString(String s) {
         char[] a = s.toCharArray();
 
