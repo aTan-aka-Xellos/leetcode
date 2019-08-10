@@ -4,6 +4,8 @@ package arrays.easy;
  * https://leetcode.com/problems/rotate-array/
  * Time complexity: O(N)
  * Space complexity: O(1)
+ *
+ * There is clever way to solve it with inversion. Need to solve it again later with it.
  */
 public class RotateArray_189 {
 
