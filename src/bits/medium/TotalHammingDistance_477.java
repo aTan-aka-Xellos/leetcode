@@ -9,26 +9,20 @@ public class TotalHammingDistance_477 {
         System.out.println(totalHammingDistance(new int[]{4,14,2}) == 6);
         System.out.println(totalHammingDistance(new int[]{4,14,2,7}) == 12);
         System.out.println(totalHammingDistance(new int[]{4,14,2,7,9}) == 24);
+        System.out.println(totalHammingDistance(new int[]{1, 1_000_000}) == 8);
+        System.out.println(totalHammingDistance(new int[]{1, 2_147_483_647}) == 30);
     }
 
     public static int totalHammingDistance(int[] nums) {
         int sum = 0;
-        int[][] counts = new int[31][2];
 
-        for (int i = 0; i < counts.length; i++) {
+        for (int i = 0; i < 31; i++) {
+            int count = 0;
             for (int num : nums) {
-                if (((num >> i) & 1) == 1) {
-                    counts[i][0]++;
-                } else {
-                    counts[i][1]++;
-                }
+                count += (num >> i) & 1;
             }
+            sum += count * (nums.length - count);
         }
-
-        for (int[] count : counts) {
-            sum += count[0] * count[1];
-        }
-
         return sum;
     }
 
