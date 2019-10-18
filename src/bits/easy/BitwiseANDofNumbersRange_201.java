@@ -16,6 +16,16 @@ public class BitwiseANDofNumbersRange_201 {
         return sum;
     }
 
+    // https://leetcode.com/problems/bitwise-and-of-numbers-range/discuss/56719
+    public int _rangeBitwiseAnd(int m, int n) {
+        int i = 0;
+        for (; m != n; ++i) {
+            m >>= 1;
+            n >>= 1;
+        }
+        return n << i;
+    }
+
     public static void main(String[] args) {
         System.out.println(rangeBitwiseAnd(0, 0) == 0);
         System.out.println(rangeBitwiseAnd(0, 1) == 0);
