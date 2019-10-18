@@ -1,4 +1,4 @@
-package bits.easy;
+package bits.medium;
 
 /**
  * https://leetcode.com/problems/bitwise-and-of-numbers-range
