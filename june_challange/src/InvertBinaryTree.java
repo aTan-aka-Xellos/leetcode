@@ -27,23 +27,22 @@ public class InvertBinaryTree {
     }
 
     public TreeNode invertTree_recursion(TreeNode root) {
-        if (root != null)
-            exchange(root);
+        if (root == null)
+            return root;
+
+        TreeNode temp = root.left;
+
+        root.left = root.right;
+        root.right = temp;
+
+        if (root.left != null)
+            invertTree(root.left);
+        if (root.right != null)
+            invertTree(root.right);
+
         return root;
     }
 
-    void exchange(TreeNode node) {
-        TreeNode temp = node.left;
-
-        node.left = node.right;
-        node.right = temp;
-
-        if (node.left != null)
-            exchange(node.left);
-        if (node.right != null)
-            exchange(node.right);
-    }
-    
     public class TreeNode {
         int val;
         TreeNode left;
