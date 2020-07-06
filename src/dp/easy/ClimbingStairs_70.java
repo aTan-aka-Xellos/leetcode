@@ -1,4 +1,4 @@
-package others.easy;
+package dp.easy;
 
 /**
  * https://leetcode.com/problems/climbing-stairs
