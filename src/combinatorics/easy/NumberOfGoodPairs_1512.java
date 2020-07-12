@@ -5,6 +5,9 @@ import java.util.Arrays;
 /**
  * Contest Weekly Contest 197 - 1
  * https://leetcode.com/problems/number-of-good-pairs/
+ *
+ * Nice trick from:
+ * https://leetcode.com/problems/number-of-good-pairs/discuss/731561/JavaC%2B%2BPython-Count
  */
 public class NumberOfGoodPairs_1512 {
 
@@ -32,4 +35,15 @@ public class NumberOfGoodPairs_1512 {
         return res;
     }
 
+
+
+
+    public int _numIdenticalPairs(int[] A) {
+        int res = 0;
+        int[] count = new int[101];
+        for (int a: A) {
+            res += count[a]++;
+        }
+        return res;
+    }
 }
