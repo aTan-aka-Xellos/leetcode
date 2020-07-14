@@ -11,6 +11,20 @@ import java.util.Arrays;
  */
 public class NumberOfGoodPairs_1512 {
 
+    public int __numIdenticalPairs(int[] nums) {
+        Arrays.sort(nums);
+        int sum = 0, left = 0;
+
+        for (int right = 0; right < nums.length; right++) {
+            if (nums[left] == nums[right])
+                sum += right - left;
+            else
+                left = right;
+        }
+        return sum;
+    }
+
+
     public int numIdenticalPairs(int[] nums) {
         Arrays.sort(nums);
         int total = 0, local = 0;
@@ -34,8 +48,6 @@ public class NumberOfGoodPairs_1512 {
         }
         return res;
     }
-
-
 
 
     public int _numIdenticalPairs(int[] A) {
