@@ -13,6 +13,28 @@ public class PalindromePartitioning_131 {
     }
 
 
+
+    List<List<String>> global = new ArrayList<>();
+
+    void generate(String s, List<String> list) {
+        if (s.length() == 0) {
+            global.add(new ArrayList(list));
+            return;
+        }
+
+        for (int i = 1; i <= s.length(); i++) {
+            String pref = s.substring(0, i);
+            if (!isPalindrome(pref)) continue;
+
+            list.add(pref);
+            generate(s.substring(i), list);
+            list.remove(list.size() - 1);
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////
+
+
     public List<List<String>> partition(String s) {
         List<List<String>> result = new ArrayList<>();
         if (s.length() == 1) {
@@ -61,6 +83,9 @@ public class PalindromePartitioning_131 {
       1  a      => [a]
      */
 
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     public List<List<String>> _partition(String s) {
         List<List<String>> global = new ArrayList<>();
         buildPalindromes(s, new LinkedList<>(), global);
@@ -72,7 +97,7 @@ public class PalindromePartitioning_131 {
             global.add(new ArrayList(local));
             return;
         }
-
+        // aaba  aa
         int currIdx = s.length();
         while (--currIdx >= 0) {
             String suff = s.substring(currIdx);
