@@ -2,6 +2,10 @@ package backtracking.medium;
 
 import java.util.*;
 
+/**
+ * https://leetcode.com/problems/permutations/
+ * https://leetcode.com/problems/permutations/discuss/18436/Java-Clean-Code-Two-recursive-solutions/219449
+ */
 public class Permutations_46 {
 
     List<List<Integer>> global = new ArrayList<>();
