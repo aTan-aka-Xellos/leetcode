@@ -5,7 +5,7 @@ package tree.medium;
  */
 public class ImplementPrefixTree_208 {
 
-    class Node {
+    static class Node {
 
         // could be stored as a marker in the array of children
         boolean isWord = false;
@@ -60,6 +60,16 @@ public class ImplementPrefixTree_208 {
             if (current == null) return false;
         }
         return true;
+    }
+
+
+    // could be used to reduce code duplication
+    private Node find(String key) {
+        Node current = root;
+        for (int i = 0; i < key.length() && current != null; i++) {
+            current = current.getChild(key.charAt(i));
+        }
+        return current;
     }
 
 }
