@@ -7,12 +7,11 @@ public class ImplementPrefixTree_208 {
 
     class Node {
 
-        char val;
-        Node[] children;
+        // could be stored as a marker in the array of children
         boolean isWord = false;
+        Node[] children;
 
-        Node(char val) {
-            this.val = val;
+        Node() {
             children = new Node[26];
         }
 
@@ -26,14 +25,14 @@ public class ImplementPrefixTree_208 {
             Node node = children[index];
 
             if (node == null) {
-                children[index] = new Node(c);
+                children[index] = new Node();
             }
             return children[index];
         }
     }
 
 
-    Node root = new Node('#');
+    Node root = new Node();
 
     public void insert(String word) {
         Node current = root;
