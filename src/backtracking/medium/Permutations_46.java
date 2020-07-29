@@ -17,7 +17,7 @@ public class Permutations_46 {
 
     void chose(int index, List<Integer> result, int[] nums) {
         if (index == nums.length) {
-            global.add(new ArrayList<Integer>(result));
+            global.add(new ArrayList<>(result));
             return;
         }
 
