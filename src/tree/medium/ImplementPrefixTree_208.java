@@ -7,7 +7,6 @@ public class ImplementPrefixTree_208 {
 
     static class Node {
 
-        // could be stored as a marker in the array of children
         boolean isWord = false;
         Node[] children;
 
@@ -15,13 +14,12 @@ public class ImplementPrefixTree_208 {
             children = new Node[26];
         }
 
-        Node getChild(char c) {
-            int index = c - 'a';
-            return children[index];
+        Node getChild(char ch) {
+            return children[ch - 'a'];
         }
 
-        Node addChildIfNull(char c) {
-            int index = c - 'a';
+        Node addChildIfNull(char ch) {
+            int index = ch - 'a';
 
             if (children[index] == null) {
                 children[index] = new Node();

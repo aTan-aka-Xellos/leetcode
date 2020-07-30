@@ -1,5 +1,8 @@
 package tree.medium;
 
+/**
+ * https://leetcode.com/problems/add-and-search-word-data-structure-design
+ */
 public class AddAndSearchWord_211 {
 
     static class Node {
@@ -33,21 +36,21 @@ public class AddAndSearchWord_211 {
 
 
     public boolean search(String word) {
-        return search(word, root);
+        return search(word, 0, root);
     }
 
     /**
      * The condition with (ch == dot) always return boolean, that's why 'else' is not used.
      */
-    private boolean search(String part, Node current) {
-        for (int i = 0; i < part.length() && current != null; i++) {
-            if (part.charAt(i) == dot) {
+    private boolean search(String word, int beginIndex, Node current) {
+        for (int i = beginIndex; i < word.length() && current != null; i++) {
+            if (word.charAt(i) == dot) {
                 for (Node child : current.children) {
-                    if (search(part.substring(i + 1), child)) return true;
+                    if (search(word, i + 1, child)) return true;
                 }
                 return false;
             }
-            current = current.getChild(part.charAt(i));
+            current = current.getChild(word.charAt(i));
         }
 
         return current != null && current.isWord;
