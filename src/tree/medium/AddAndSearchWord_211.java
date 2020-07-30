@@ -56,4 +56,28 @@ public class AddAndSearchWord_211 {
         return current != null && current.isWord;
     }
 
+
+
+        /*
+        Implementation with map.
+        Replace line:
+        for (Node child : current.children)
+        with:
+        for (Node child : current.childList.values()) {
+        Real time is approximately the same.
+        Execution time is 3 times slower.
+
+
+        Map<Character, Node> childList = new HashMap<>();
+
+        Node _addNodeIfNull(Character ch) {
+            if (!childList.containsKey(ch)) childList.put(ch, new Node());
+            return childList.get(ch);
+        }
+
+        Node _getChild(Character ch) {
+            return childList.get(ch);
+        }
+         */
+
 }
