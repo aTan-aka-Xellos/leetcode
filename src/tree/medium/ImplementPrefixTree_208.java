@@ -22,9 +22,8 @@ public class ImplementPrefixTree_208 {
 
         Node addChildIfNull(char c) {
             int index = c - 'a';
-            Node node = children[index];
 
-            if (node == null) {
+            if (children[index] == null) {
                 children[index] = new Node();
             }
             return children[index];
@@ -36,7 +35,7 @@ public class ImplementPrefixTree_208 {
 
     public void insert(String word) {
         Node current = root;
-        for (char c: word.toCharArray()) {
+        for (char c : word.toCharArray()) {
             current = current.addChildIfNull(c);
         }
         current.isWord = true;
@@ -45,7 +44,7 @@ public class ImplementPrefixTree_208 {
 
     public boolean search(String word) {
         Node current = root;
-        for (char c: word.toCharArray()) {
+        for (char c : word.toCharArray()) {
             current = current.getChild(c);
             if (current == null) return false;
         }
@@ -55,7 +54,7 @@ public class ImplementPrefixTree_208 {
 
     public boolean startsWith(String prefix) {
         Node current = root;
-        for (char c: prefix.toCharArray()) {
+        for (char c : prefix.toCharArray()) {
             current = current.getChild(c);
             if (current == null) return false;
         }
