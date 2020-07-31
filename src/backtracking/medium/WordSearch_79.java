@@ -1,5 +1,8 @@
-package tree.medium;
+package backtracking.medium;
 
+/**
+ * https://leetcode.com/problems/word-search/
+ */
 public class WordSearch_79 {
 
     public static void main(String[] args) {
