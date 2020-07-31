@@ -63,9 +63,12 @@ public class AddAndSearchWord_211 {
         Replace line:
         for (Node child : current.children)
         with:
-        for (Node child : current.childList.values()) {
+        for (Map.Entry<Character, Node> pair : current.childList.entrySet()) {
+        and pair.getValue()
+
         Real time is approximately the same.
-        Execution time is 3 times slower.
+        Execution time is slightly slower.
+        childList.values() is much slower.
 
 
         Map<Character, Node> childList = new HashMap<>();
