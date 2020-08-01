@@ -49,8 +49,9 @@ public class AddAndSearchWord_211 {
                     if (search(word, i + 1, child)) return true;
                 }
                 return false;
+            } else {
+                current = current.getChild(word.charAt(i));
             }
-            current = current.getChild(word.charAt(i));
         }
 
         return current != null && current.isWord;
