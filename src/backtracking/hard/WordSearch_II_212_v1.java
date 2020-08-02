@@ -10,25 +10,11 @@ import java.util.List;
  * correctness error count = 1
  * Forgot to restore the original state (board[i][j] ^= 256) if the word was found
  * In the WordSearch_79, only single word is searched and state restore is not needed.
+ *
+ *
+ * This is not optimal solution, it't not utilize smth like Prefix Tree.
  */
-public class WordSearch_II_212 {
-
-    static class Node {
-
-        boolean isWord = false;
-        Node[] children = new Node[26];
-
-        Node addIfNull(char ch) {
-            int index = ch - 'a';
-            if (children[index] == null) children[index] = new Node();
-            return children[index];
-        }
-
-        Node get(char ch) {
-            int index = ch - 'a';
-            return children[index];
-        }
-    }
+public class WordSearch_II_212_v1 {
 
     public List<String> findWords(char[][] board, String[] words) {
         List<String> result = new ArrayList<>();
@@ -50,6 +36,11 @@ public class WordSearch_II_212 {
     int[] dx = {-1, 1, 0, 0};
     int[] dy = {0, 0, -1, 1};
 
+
+    /**
+     * Time complexity:
+     * O(W * M*N * 3ˆL), W - number of words, M*N - size of the board, L - length of the word (avg?)
+     */
     boolean find(char[][] board, char[] word, int index, int i, int j) {
         if (index == word.length) return true;
         if (i < 0 || i == board.length || j < 0 || j == board[0].length) return false;
