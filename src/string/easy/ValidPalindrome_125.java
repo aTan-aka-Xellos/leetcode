@@ -7,7 +7,21 @@ package string.easy;
  */
 public class ValidPalindrome_125 {
 
+    // 2020 year version
     public boolean isPalindrome(String s) {
+        char[] arr = s.toLowerCase().toCharArray();
+
+        for (int i = 0, j = s.length() - 1; i < j; i++, j--) {
+            while (i < j && !Character.isLetterOrDigit(arr[i])) i++;
+            while (i < j && !Character.isLetterOrDigit(arr[j])) j--;
+
+            if (arr[i] != arr[j]) return false;
+        }
+        return true;
+    }
+
+
+    public boolean _isPalindrome(String s) {
 
         for (int start = 0, end = s.length() - 1; start < end; start++, end--) {
 
