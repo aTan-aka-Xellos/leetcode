@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class PascalsTriangle_II_118 {
 
-    public List<Integer> getRow(int rowIndex) {
+    public List<Integer> _getRow(int rowIndex) {
         List<Integer> result = new ArrayList<>(Arrays.asList(1));
 
         if (rowIndex > 0) {
@@ -23,4 +23,20 @@ public class PascalsTriangle_II_118 {
         }
         return result;
     }
+
+    public List<Integer> getRow(int rowIndex) {
+        List<Integer> current = new ArrayList<>();
+        List<Integer> prev = new ArrayList<>();
+
+        for (int i = 0; i <= rowIndex; i++) {
+            current.clear();
+            for (int j = 0; j <= prev.size() && j <= rowIndex; j++) {
+                if (j == 0 || j == prev.size()) current.add(1);
+                else current.add(prev.get(j - 1) + prev.get(j) );
+            }
+            prev = new ArrayList<>(current);
+        }
+        return current;
+    }
+
 }
