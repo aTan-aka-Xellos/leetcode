@@ -10,16 +10,16 @@ public class RotateList_61 {
     public ListNode rotateRight(ListNode head, int k) {
         if (head == null) return head;
 
-        int length = 1;
         ListNode node = head;
         ListNode last = head;
 
-        while (last.next != null) {
-            length++;
+        int n;
+        for (n = 1; last.next != null; n++)
             last = last.next;
-        }
 
-        for (int i = 1; i < length - (k % length); i++) node = node.next;
+        k = k % n;
+        for (int i = 1; i < n - k; i++)
+            node = node.next;
 
         last.next = head;
         head = node.next;

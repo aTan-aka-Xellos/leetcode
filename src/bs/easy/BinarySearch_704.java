@@ -5,12 +5,21 @@ package bs.easy;
  */
 public class BinarySearch_704 {
 
-    public static void main(String[] args) {
-        assertEquals(search(new int[]{-1,0,3,5,9,12}, 9), 4);
-        assertEquals(search(new int[]{-1,0,3,5,9,12}, 2), -1);
+    // new solution from 10/08/2020
+    public int search(int[] nums, int target) {
+        if (nums.length == 0) return -1;
+        int lo = 0, hi = nums.length, mid;
+
+        while (hi - lo > 1) {
+            mid = (hi + lo) >>> 1;
+            if (nums[mid] <= target) lo = mid;
+            else                    hi = mid;
+        }
+        return nums[lo] == target ? lo : -1;
     }
 
-    public static int search(int[] nums, int target) {
+    // old solution from 12/07/2018
+    public static int _search(int[] nums, int target) {
         int lo = 0, hi = nums.length - 1, index;
 
         do {
@@ -24,7 +33,4 @@ public class BinarySearch_704 {
         return -1;
     }
 
-    private static void assertEquals(int actual, int expected) {
-        if (actual != expected) System.err.println(actual + " != " + expected);
-    }
 }
