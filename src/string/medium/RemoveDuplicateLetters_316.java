@@ -29,7 +29,13 @@ import java.util.*;
  *
  * Pay attention:
  * - Since we pass substring - we need to store the last indexes from the end of the string not from the beginning
+ * - define 'last' as TreeMap, not just Map - because solution relay on the order of elements inside
  *
+ * Time complexity:
+ * O(Aˆ2 * N + 2 * A logA), where A is the size of the alphabet, N - length of the string
+ * Since A << N, the final time complexity: O(N)
+ *
+ * Space complexity: O(1)
  */
 public class RemoveDuplicateLetters_316 {
 
@@ -38,7 +44,7 @@ public class RemoveDuplicateLetters_316 {
     static class V3 {
 
         public String removeDuplicateLetters(String s) {
-            Map<Character, Integer> last = new TreeMap<>();
+            TreeMap<Character, Integer> last = new TreeMap<>();
             for (int i = 0; i < s.length(); i++) {
                 last.put(s.charAt(i), s.length() - i);
             }
@@ -96,7 +102,7 @@ public class RemoveDuplicateLetters_316 {
     // single method, not quite readable
     static class V4 {
 
-        Map<Character, Integer> last;
+        TreeMap<Character, Integer> last;
 
         public String removeDuplicateLetters(String s) {
             if (last == null) {
