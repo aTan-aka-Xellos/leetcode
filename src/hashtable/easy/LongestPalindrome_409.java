@@ -1,5 +1,8 @@
 package hashtable.easy;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * https://leetcode.com/problems/longest-palindrome/
  */
@@ -21,4 +24,18 @@ public class LongestPalindrome_409 {
         return res;
     }
 
+    public int longestPalindrome_v2(String s) {
+        Map<Character, Integer> map = new HashMap<>();
+        int count = 0;
+
+        for (char ch: s.toCharArray()) {
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
+        }
+
+        for (int val: map.values()) {
+            count += val - (val % 2);
+        }
+
+        return count + (count == s.length() ? 0 : 1);
+    }
 }
