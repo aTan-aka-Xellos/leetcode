@@ -11,6 +11,7 @@ import java.util.Queue;
 public class BinaryTreeLevelOrderTraversal_102 {
 
     List<List<Integer>> list = new ArrayList<>();
+
     public List<List<Integer>> levelOrder(TreeNode root) {
         iterate(root, 0);
         return list;
@@ -18,39 +19,34 @@ public class BinaryTreeLevelOrderTraversal_102 {
 
     void iterate(TreeNode node, int level) {
         if (node == null) return;
+        if (list.size() - 1 < level) list.add(new ArrayList<>());
 
-        if (list.size() - 1 < level) {
-            list.add(new ArrayList<Integer>());
-        }
         list.get(level).add(node.val);
-        iterate(node.left, level + 1);
+        iterate(node.left,  level + 1);
         iterate(node.right, level + 1);
     }
 
 
 
-    public List<List<Integer>> _levelOrder(TreeNode root) {
-        List<List<Integer>> global = new ArrayList<>();
+    public List<List<Integer>> levelOrder_v2(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
         Queue<TreeNode> queue = new LinkedList<>();
 
-        if (root != null) {
-            queue.add(root);
-        }
+        if (root != null) queue.add(root);
 
         while(!queue.isEmpty()) {
+            result.add(new ArrayList<>());
             int size = queue.size();
 
-            List<Integer> list = new ArrayList<>();
-            global.add(list);
-            while(size > 0) {
+            while (size-- > 0) {
                 TreeNode node = queue.poll();
-                list.add(node.val);
-                if (node.left != null) queue.add(node.left);
+                result.get(result.size() - 1).add(node.val);
+
+                if (node.left  != null) queue.add(node.left);
                 if (node.right != null) queue.add(node.right);
-                size--;
             }
         }
-        return global;
+        return result;
     }
 
 

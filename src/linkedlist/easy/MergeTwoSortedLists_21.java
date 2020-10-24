@@ -7,7 +7,22 @@ package linkedlist.easy;
  */
 public class MergeTwoSortedLists_21 {
 
+    // 07/04/2020 + 10/25/2020
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if (l1 == null) return l2;
+        if (l2 == null) return l1;
+
+        if (l1.val < l2.val) {
+            l1.next = mergeTwoLists(l1.next, l2);
+            return l1;
+        } else {
+            l2.next = mergeTwoLists(l1, l2.next);
+            return l2;
+        }
+    }
+
+    // 07/27/2019
+    public ListNode mergeTwoLists_v1(ListNode l1, ListNode l2) {
 
         ListNode root = null, current = new ListNode(0);
 
@@ -25,7 +40,7 @@ public class MergeTwoSortedLists_21 {
         return root;
     }
 
-    public class ListNode {
+    public static class ListNode {
         int val;
         ListNode next;
         ListNode(int x) {
