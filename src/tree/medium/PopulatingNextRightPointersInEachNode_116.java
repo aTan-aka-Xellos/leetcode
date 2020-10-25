@@ -8,18 +8,26 @@ import java.util.Queue;
  */
 public class PopulatingNextRightPointersInEachNode_116 {
 
-    public Node connect(Node root) {
+    // 10/25/2020
+    public Node connect_v1(Node root) {
+        if (root == null || root.left == null) return root;
+        root.left.next  = root.right;
+        root.right.next = root.next == null ? null : root.next.left;
+        connect_v1(root.left);
+        connect_v1(root.right);
+        return root;
+    }
+
+    // 07/22/2020
+    public Node connect_v2(Node root) {
 
         Queue<Node> queue = new LinkedList<>();
 
-        if (root != null) {
-            queue.add(root);
-        }
+        if (root != null) queue.add(root);
 
         while(!queue.isEmpty()) {
             int size = queue.size();
-            // 2 3 | 3 4 5
-            while(size > 0) {
+            while (size > 0) {
                 Node node = queue.poll();
                 if (size > 1) node.next = queue.peek();
 
@@ -31,17 +39,16 @@ public class PopulatingNextRightPointersInEachNode_116 {
         return root;
     }
 
+
     // from https://leetcode.com/problems/populating-next-right-pointers-in-each-node/discuss/37473/My-recursive-solution(Java)/188548
     public Node _connect(Node root) {
         if (root == null || root.left == null) return root;
         root.left.next = root.right;
         if (root.next != null) root.right.next = root.next.left;
-        connect(root.left);
-        connect(root.right);
+        _connect(root.left);
+        _connect(root.right);
         return root;
     }
-
-
 
 
     class Node {
