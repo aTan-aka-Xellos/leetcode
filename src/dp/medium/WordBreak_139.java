@@ -15,6 +15,7 @@ import java.util.List;
  */
 public class WordBreak_139 {
 
+    // 10/28/2020 +hint from Alex
     public boolean wordBreak(String s, List<String> wordDict) {
         boolean[] dp = new boolean[s.length() + 1];
         dp[0] = true;
