@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class NTreePreorderTraversal_589 {
+public class NTreePreOrderTraversal_589 {
 
     // recursive
     List<Integer> global = new ArrayList<>();
@@ -21,7 +21,7 @@ public class NTreePreorderTraversal_589 {
 
 
     // iterative
-    public List<Integer> preorder(Node root) {
+    public List<Integer> preorder_v2(Node root) {
         List<Integer> list = new ArrayList<>();
         Stack<Node> stack = new Stack<>();
 
