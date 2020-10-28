@@ -5,6 +5,7 @@ import java.util.Queue;
 
 /**
  * https://leetcode.com/problems/number-of-islands/
+ * Refactored after review by @yznovyak (by e-main)
  */
 public class NumberOfIslands_200 {
 

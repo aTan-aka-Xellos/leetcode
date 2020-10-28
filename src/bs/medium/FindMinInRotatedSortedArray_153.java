@@ -6,9 +6,12 @@ package bs.medium;
  * [lo, mid]
  * [mid + 1, high]
  * therefore we change the next lo equals to mid + 1, or the high equals to mid.
+ *
+ * MOC.
  */
 public class FindMinInRotatedSortedArray_153 {
 
+    // 06/25/2020
     public static int findMin(int[] nums) {
         int mid, lo = 0, hi = nums.length - 1;
 
