@@ -14,6 +14,17 @@ import java.util.Arrays;
  * https://leetcode.com/problems/dice-roll-simulation/discuss/529294/Java-2d-DP-with-rolls-and-the-last-number
  *
  * 10/30/2020 current understanding is not full
+ *
+ *
+ * Example for input:
+ * [4,4,4,4,2,3], n = 4
+ *
+ * [1,    1,    1,    1,    1,    1,    1]
+ * [6,    5,    5,    5,    5,    5,    5]
+ * [36,   30,   30,   30,   30,   30,   30]
+ * [215,  179,  179,  179,  179,  180,  179]
+ * [1284, 1069, 1069, 1069, 1069, 1074, 1070]
+ *
  */
 public class DiceRollSimulation_1223 {
 
@@ -22,6 +33,8 @@ public class DiceRollSimulation_1223 {
      * j - dice value [1-6]
      * m - dice value [1-6] before the suffix of similar rolls, at index [i-k]
      * k - length of the suffix of the similar numbers for j dice value
+     *
+     * dp[n][0] contains the answer for the current roll
      */
     public int dieSimulator(int n, int[] rollMax) {
         int[][] dp = new int[n + 1][7];
