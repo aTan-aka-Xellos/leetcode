@@ -6,6 +6,8 @@ import java.util.Queue;
 /**
  * https://leetcode.com/problems/number-of-islands/
  * Refactored after review by @yznovyak (by e-main)
+ *
+ * https://pastebin.com/Lchyz6aQ
  */
 public class NumberOfIslands_200 {
 
@@ -15,11 +17,10 @@ public class NumberOfIslands_200 {
     // recursive approach
     public int numIslands_v1(char[][] grid) {
         int count = 0;
-
         for (int r = 0; r < grid.length; r++) {
             for (int c = 0; c < grid[0].length; c++) {
                 if (grid[r][c] == '1') {
-                    markNeighbors(r, c, grid);
+                    dfs(grid, r, c);
                     count++;
                 }
             }
@@ -27,12 +28,12 @@ public class NumberOfIslands_200 {
         return count;
     }
 
-    void markNeighbors(int r, int c, char[][] grid) {
+    void dfs( char[][] grid, int r, int c) {
         if (r < 0 || c < 0 || r >= grid.length || c >= grid[0].length || grid[r][c] != '1') return;
 
         grid[r][c] = '#';
         for (int[] step : steps) {
-            markNeighbors(r + step[0], c + step[1], grid);
+            dfs(grid, r + step[0], c + step[1]);
         }
     }
 
@@ -48,7 +49,7 @@ public class NumberOfIslands_200 {
             for (int c = 0; c < grid[0].length; c++) {
                 if (grid[r][c] == '1') {
                     queue.add(new int[] {r, c});
-                    markNeighbors(queue, grid);
+                    dfs(queue, grid);
                     count++;
                 }
             }
@@ -56,7 +57,7 @@ public class NumberOfIslands_200 {
         return count;
     }
 
-    void markNeighbors(Queue<int[]> queue, char[][] grid) {
+    void dfs(Queue<int[]> queue, char[][] grid) {
         while (!queue.isEmpty()) {
             int[] pos = queue.poll();
             int r = pos[0], c = pos[1];
