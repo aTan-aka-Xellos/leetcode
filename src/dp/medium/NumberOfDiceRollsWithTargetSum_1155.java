@@ -1,5 +1,6 @@
 package dp.medium;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,6 +43,29 @@ public class NumberOfDiceRollsWithTargetSum_1155 {
             res = dp;
         }
         return res.getOrDefault(target, 0);
+    }
+
+    // 11/11/2020
+    public int numRollsToTarget_v3(int d, int f, int target) {
+        int[][] cache = new int[d + 1][target + 1];
+        for (int i = 1; i <= d; i++) Arrays.fill(cache[i], -1);
+        cache[0][0] = 1;
+        return getCountForSum(cache, target, d, f);
+    }
+
+    private int M = 1_000_000_007;
+
+    private int getCountForSum(int[][] cache, int target, int d, int f) {
+        if (d < 0  || target < 0)  return 0;
+
+        if (cache[d][target] == -1) {
+            cache[d][target] = 0;
+            for (int i = 1; i <= f && i <= target; i++) {
+                cache[d][target] += getCountForSum(cache, target - i, d - 1, f);
+                if (cache[d][target] >= M) cache[d][target] %= M;
+            }
+        }
+        return cache[d][target];
     }
 
 }
