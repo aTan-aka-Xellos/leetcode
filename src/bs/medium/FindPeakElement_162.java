@@ -1,15 +1,24 @@
 package bs.medium;
 
+/**
+ * https://leetcode.com/problems/find-peak-element/
+ */
 public class FindPeakElement_162 {
 
-    public static void main(String[] args) {
-        assertEquals(findPeakElement(new int[]{1, 2, 3, 1}), 2);
-        assertEquals(findPeakElement(new int[]{1, 2, 1, 3, 5, 6, 4}), 1);
-        assertEquals(findPeakElement(new int[]{1, 10, 3, 4, 5, 6, 7, 8, 9, 10}), 1);
+    // 11/12/2020
+    public int findPeakElement(int[] a) {
+        int L = 0, R = a.length, mid = 0;
+        while (R - L > 1) {
+            mid = (L + R) >>> 1;
+            if (a[mid - 1] < a[mid]) L = mid;
+            else                     R = mid;
+        }
+        return L;
     }
 
-    public static int findPeakElement(int[] nums) {
 
+    // 12/13/2018
+    public static int findPeakElement_v1(int[] nums) {
         if (nums.length == 1) return 0;
         if (nums.length == 2) return nums[0] > nums[1] ? 0 : 1;
 
@@ -19,7 +28,4 @@ public class FindPeakElement_162 {
         return nums[0] > nums[nums.length - 1] ? 0 : nums.length - 1;
     }
 
-    private static void assertEquals(int actual, int expected) {
-        if (actual != expected) System.err.println(actual + " != " + expected);
-    }
 }
