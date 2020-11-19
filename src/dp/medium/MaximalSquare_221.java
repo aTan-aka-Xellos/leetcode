@@ -2,6 +2,7 @@ package dp.medium;
 
 /**
  * https://leetcode.com/problems/maximal-square/
+ * See CountSquareSubmatricesWithAllOnes_1277
  */
 public class MaximalSquare_221 {
 

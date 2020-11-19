@@ -5,16 +5,20 @@ package string.easy;
  */
 public class BalancedString_1221 {
 
-    public static void main(String[] args) {
-        System.out.println(balancedStringSplit("RRLRRLRLLLRL") == 2);
-        System.out.println(balancedStringSplit("RLRRLLRLRL") == 4);
-        System.out.println(balancedStringSplit("RLLLLRRRLR") == 3);
-        System.out.println(balancedStringSplit("RLLRRRLLLR") == 4);
-        System.out.println(balancedStringSplit("LLLLRRRR") == 1);
+    // 11/19/2020
+    public int balancedStringSplit_v1(String s) {
+        int L = 0, R = 0, sum = 0;
+
+        for (char c: s.toCharArray()) {
+            if (c == 'L') L++;
+            else          R++;
+            if (L == R) sum++;
+        }
+        return sum;
     }
 
-
-    public static int balancedStringSplit(String s) {
+    // 10/26/2019
+    public static int balancedStringSplit_v2(String s) {
         int count = 0, l = 0, r = 0, idx = 0;
 
         while (idx < s.length()) {
