@@ -7,6 +7,27 @@ public class TheMaze_490 {
 
     // 11/19/2020
     public boolean hasPath(int[][] maze, int[] start, int[] dest) {
+        int x = start[0], y = start[1], x1, x2, y1, y2;
+
+        if (x < 0 || y < 0 || x >= maze.length || y >= maze[0].length || maze[x][y] == -1) return false;
+        if (dest[0] == x && dest[1] == y) return true;
+
+        maze[x][y] = -1;
+        x1 = x2 = x;
+        y1 = y2 = y;
+
+        while (x1 < maze.length    - 1 && maze[x1 + 1][y] != 1) x1++;
+        while (y1 < maze[0].length - 1 && maze[x][y1 + 1] != 1) y1++;
+        while (x2 > 0                  && maze[x2 - 1][y] != 1) x2--;
+        while (y2 > 0                  && maze[x][y2 - 1] != 1) y2--;
+
+        return hasPath(maze, new int[]{x1, y}, dest) || hasPath(maze, new int[]{x2, y}, dest) ||
+               hasPath(maze, new int[]{x, y1}, dest) || hasPath(maze, new int[]{x, y2}, dest);
+    }
+
+
+    // 11/19/2020
+    public boolean hasPath_v1(int[][] maze, int[] start, int[] dest) {
         int x = start[0], y = start[1];
 
         if (x < 0 || y < 0 || x >= maze.length || y >= maze[0].length) return false;
