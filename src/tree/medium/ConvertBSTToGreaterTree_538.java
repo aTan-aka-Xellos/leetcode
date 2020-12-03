@@ -7,6 +7,7 @@ package tree.medium;
 public class ConvertBSTToGreaterTree_538 {
 
     // 10/25/2020 (Zara shared screen first)
+    // 12/02/2020 solver again "automatically", but without deep understanding
     public TreeNode convertBST(TreeNode root) {
         if (root == null) return null;
         convert(root, 0);
