@@ -2,6 +2,8 @@ package twopointers.hard;
 
 public class TrappingRainWater_42 {
 
+    // 09/19/2020
+    // 12/10/2020 - had a lot of difficulties with indexes, takeaway - write simple code, with all needed vars
     public int trap(int[] height) {
 
         int n = height.length;
