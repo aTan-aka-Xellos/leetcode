@@ -2,6 +2,9 @@ package stack.easy;
 
 /**
  * https://leetcode.com/problems/remove-outermost-parentheses/
+ *
+ * The optimal solution from @Lee215
+ * https://leetcode.com/problems/remove-outermost-parentheses/discuss/270022/JavaC%2B%2BPython-Count-Opened-Parenthesis
  */
 public class RemoveOutermostParentheses_1021 {
 
