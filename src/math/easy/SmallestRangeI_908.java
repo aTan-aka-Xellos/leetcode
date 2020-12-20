@@ -2,22 +2,20 @@ package math.easy;
 
 import java.util.Arrays;
 
+/**
+ * https://leetcode.com/problems/smallest-range-i/
+ */
 public class SmallestRangeI_908 {
 
-    public static void main(String[] args) {
-
-        assertEquals(smallestRangeI(new int[]{1}, 0), 0);
-        assertEquals(smallestRangeI(new int[]{0, 10}, 2), 6);
-        assertEquals(smallestRangeI(new int[]{1, 3, 6}, 3), 0);
-        assertEquals(smallestRangeI(new int[]{2, 7, 2}, 1), 3);
-
-        assertEquals(smallestRangeIShort(new int[]{1}, 0), 0);
-        assertEquals(smallestRangeIShort(new int[]{0, 10}, 2), 6);
-        assertEquals(smallestRangeIShort(new int[]{1, 3, 6}, 3), 0);
-        assertEquals(smallestRangeIShort(new int[]{2, 7, 2}, 1), 3);
+    // 12/20/2020
+    public int smallestRangeI_v1(int[] A, int K) {
+        int min = Arrays.stream(A).min().orElse(0);
+        int max = Arrays.stream(A).max().orElse(0);
+        return Math.max(0, max - min - 2 * K);
     }
 
-    public static int smallestRangeI(int[] A, int K) {
+    // 12/06/2018
+    public int smallestRangeI_v2(int[] A, int K) {
 
         int min = Integer.MAX_VALUE, max = 0;
         for (int i = 0; i < A.length; i++) {
@@ -30,13 +28,11 @@ public class SmallestRangeI_908 {
         else return 0;
     }
 
-    public static int smallestRangeIShort(int[] A, int K) {
+    // 12/06/2018
+    public int smallestRangeI_v3(int[] A, int K) {
         Arrays.sort(A);
         int diff = A[A.length - 1] - A[0];
         return  diff > 2 * K ? diff - 2 * K : 0;
     }
 
-    private static void assertEquals(int actual, int expected) {
-        if (actual != expected) System.err.println(actual + " != " + expected);
-    }
 }
