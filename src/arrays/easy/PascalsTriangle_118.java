@@ -10,6 +10,24 @@ import java.util.List;
  */
 public class PascalsTriangle_118 {
 
+    // 12/22/2020
+    public List<List<Integer>> generate_v1(int numRows) {
+        List<List<Integer>> list = new ArrayList<>();
+        List<Integer> prev = null;
+
+        for (int i = 0; i < numRows; i++) {
+            List<Integer> curr = new ArrayList<>();
+            list.add(curr);
+            for (int j = 0; j <= i; j++) {
+                if (j == 0 || j == i) curr.add(1);
+                else curr.add(prev.get(j - 1) + prev.get(j));
+            }
+            prev = curr;
+        }
+        return list;
+    }
+
+    // 08/07/2019
     List<List<Integer>> result = new ArrayList<>();
 
     public List<List<Integer>> generate(int numRows) {
