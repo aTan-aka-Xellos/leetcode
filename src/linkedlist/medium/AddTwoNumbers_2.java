@@ -6,8 +6,31 @@ package linkedlist.medium;
  */
 public class AddTwoNumbers_2 {
 
-    // 12/09/2020 was quite painful, haven't read task properly
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    // 01/13/2021
+    // Issues:
+    // - tried to write from the memory (and remembered it wrong)
+    // - forgot the corner case with null.next when call recursion method
+    public ListNode addTwoNumbers_v2(ListNode l1, ListNode l2) {
+        return add(l1, l2, 0);
+    }
+
+    public ListNode add(ListNode l1, ListNode l2, int rem) {
+        ListNode node = new ListNode(rem);
+
+        if (l1 == null && l2 == null) return rem > 0 ? node : null;
+
+        if (l1 != null) node.val += l1.val;
+        if (l2 != null) node.val += l2.val;
+
+        node.next = add(l1 == null ? null : l1.next, l2 == null ? null : l2.next, node.val / 10);
+        node.val %= 10;
+        return node;
+    }
+
+
+    // 12/09/2020
+    // was quite painful, haven't read task properly
+    public ListNode addTwoNumbers_v1(ListNode l1, ListNode l2) {
         ListNode root = new ListNode();
         ListNode prev = root;
 
@@ -28,6 +51,9 @@ public class AddTwoNumbers_2 {
         }
         return root.next;
     }
+
+
+
 
 
     public static class ListNode {
