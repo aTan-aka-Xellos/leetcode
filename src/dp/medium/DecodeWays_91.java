@@ -10,18 +10,26 @@ import java.util.Arrays;
  */
 public class DecodeWays_91 {
 
-    public static void main(String[] args) {
-        DecodeWays_91 d = new DecodeWays_91();
-        System.out.println(d.numDecodings("11111"));
-        System.out.println(d.numDecodings("12"));
-        System.out.println(d.numDecodings("226"));
-        System.out.println(d.numDecodings("200"));
+    // 01/27/2021
+    // struggled a lot with DP relation and indexes
+    public int numDecodings_v1(String s) {
+        if (s.charAt(0) == '0') return 0;
 
-        System.out.println(d.numDecodings("2"));
-        System.out.println(d.numDecodings("0"));
-        System.out.println(d.numDecodings(""));
+        int[] dp = new int[s.length() + 1];
+        dp[0] = 1;
+        dp[1] = 1;
+
+        for (int i = 2; i <= s.length(); i++) {
+            if (s.charAt(i-1) != '0') dp[i] = dp[i-1];
+
+            if (s.charAt(i-2) == '1' || s.charAt(i-2) == '2' && s.charAt(i-1) < '7')
+                dp[i] += dp[i - 2];
+        }
+        return dp[s.length()];
     }
 
+
+    // 07/07/2020
     public int numDecodings(String s) {
         int[] cache = new int[s.length() + 1];
         Arrays.fill(cache, -1);
