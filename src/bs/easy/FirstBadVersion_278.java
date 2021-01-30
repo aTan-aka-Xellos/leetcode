@@ -4,6 +4,9 @@ import static java.lang.Math.abs;
 
 import java.util.Random;
 
+/**
+ * https://leetcode.com/problems/first-bad-version/
+ */
 public class FirstBadVersion_278 {
 
     private static int RANDOM = abs(new Random().nextInt(100));
@@ -24,6 +27,19 @@ public class FirstBadVersion_278 {
         assertEquals(firstBadVersion_simple(100), RANDOM);
     }
 
+    // 01/30/2021
+    public int firstBadVersion_v2(int n) {
+        int L = 0, R = n;
+
+        while (R - L > 1) {
+            int mid = (L + R) >>> 1;
+            if (isBadVersion(mid)) R = mid;
+            else                   L = mid;
+        }
+        return R;
+    }
+
+    // 12/09/2018
     public static int firstBadVersion(int n) {
         int mid, lo = 1, hi = n;
 

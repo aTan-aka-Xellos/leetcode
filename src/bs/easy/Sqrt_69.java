@@ -13,9 +13,21 @@ public class Sqrt_69 {
         assertEquals(mySqrt(2147483647), 46340);
     }
 
+    // 01/30/2021
+    public int mySqrt_v1(int x) {
+        if (x <= 1) return x;
+        int L = 1, R = x;
 
+        while (R - L > 1) {
+            int mid = (L + R) >>> 1;
+            if (mid > x / mid) R = mid;
+            else               L = mid;
+        }
+        return L;
+    }
+
+    // 12/08/2018
     public static int mySqrt(int x) {
-
         if (x == 0) return 0;
         int mid, left = 1, right = x;
 
