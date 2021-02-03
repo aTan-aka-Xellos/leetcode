@@ -9,7 +9,29 @@ import java.util.List;
  */
 public class Subsets_78 {
 
-    public List<List<Integer>> subsets(int[] nums) {
+    List<List<Integer>> global = new ArrayList<>();
+
+    // 02/01/2021
+    public List<List<Integer>> subsets_v2(int[] nums) {
+        bt(new ArrayList<>(), nums, 0);
+        return global;
+    }
+
+    void bt(List<Integer> curr, int[] nums, int idx) {
+        if (idx == nums.length) {
+            global.add(new ArrayList<>(curr));
+            return;
+        }
+
+        bt(curr, nums, idx + 1);
+        curr.add(nums[idx]);
+        bt(curr, nums, idx + 1);
+        curr.remove(curr.size() - 1);
+    }
+
+
+    // 07/12/2020
+    public List<List<Integer>> subsets_v1(int[] nums) {
         List<List<Integer>> ans = new ArrayList<>();
         generate(nums, 0, new ArrayList<>(), ans);
         return ans;
