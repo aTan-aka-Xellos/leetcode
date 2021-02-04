@@ -8,12 +8,12 @@ public class BinarySearch_704 {
     // new solution from 10/08/2020
     public int search(int[] nums, int target) {
         if (nums.length == 0) return -1;
-        int lo = 0, hi = nums.length, mid;
+        int lo = 0, hi = nums.length;
 
         while (hi - lo > 1) {
-            mid = (hi + lo) >>> 1;
+            int mid = (hi + lo) >>> 1;
             if (nums[mid] <= target) lo = mid;
-            else                    hi = mid;
+            else                     hi = mid;
         }
         return nums[lo] == target ? lo : -1;
     }
