@@ -22,7 +22,7 @@ public class KokoEatingBananas_875 {
     boolean canEat(int eat, int[] piles, int H) {
         int hours = 0;
         for (int pile: piles) {
-            hours += (pile - 1) / eat + 1;
+            hours += (pile + eat - 1) / eat;
         }
         return hours <= H;
     }
