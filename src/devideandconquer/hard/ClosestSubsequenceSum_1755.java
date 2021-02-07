@@ -10,7 +10,7 @@ import java.util.Arrays;
  * Used approach: Meet in the middle
  * https://www.geeksforgeeks.org/meet-in-the-middle
  *
- * Time complexity: O( 2ˆ(n/2) log 2ˆ(n/2) )   =>   O(n*2log(n/2))
+ * Time complexity: O( 2ˆ(n/2) log 2ˆ(n/2) )   =>   O(n*2ˆ(n/2))
  * Space complexity: O(2ˆ(n/2))
  */
 public class ClosestSubsequenceSum_1755 {
