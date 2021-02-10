@@ -3,8 +3,13 @@ package bs.medium;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * https://leetcode.com/problems/find-k-closest-elements
+ */
 public class FindKClosestElements_658 {
 
+    // 02/06/2021
+    // regular pattern didn't work
     public List<Integer> findClosestElements(int[] arr, int k, int x) {
         int mid, lo = 0, hi = arr.length - k;
 
