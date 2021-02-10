@@ -26,10 +26,10 @@ public class TrimABinarySearchTree_669 {
             TreeNode node = stack.pop();
             if (node == null) continue;
 
-            while (node.left != null && node.left.val < low) node.left = node.left.right;
-            stack.push(node.left);
+            while (node.left  != null && node.left.val  < low)  node.left  = node.left.right;
+            while (node.right != null && node.right.val > high) node.right = node.right.left;
 
-            while (node.right != null && node.right.val > high) node.right =  node.right.left;
+            stack.push(node.left);
             stack.push(node.right);
         }
         return root;
