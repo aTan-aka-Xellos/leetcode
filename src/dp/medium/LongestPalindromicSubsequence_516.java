@@ -2,7 +2,7 @@ package dp.medium;
 
 /**
  * https://leetcode.com/problems/longest-palindromic-subsequence/
- * With hint from @Alex
+ * With hint from @vitar
  */
 public class LongestPalindromicSubsequence_516 {
 

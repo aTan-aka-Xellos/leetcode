@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * https://leetcode.com/problems/closest-subsequence-sum/
  * Weekly Contest 227
- * Got hint from @Alex
+ * Got hint from @vitar
  *
  * Used approach: Meet in the middle
  * https://www.geeksforgeeks.org/meet-in-the-middle

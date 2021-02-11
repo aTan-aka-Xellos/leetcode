@@ -2,7 +2,7 @@ package math.hard;
 
 /**
  * https://leetcode.com/problems/consecutive-numbers-sum/
- * Got help to define upper-limit from @Alex
+ * Got help to define upper-limit from @vitar
  */
 public class ConsecutiveNumbersSum_829 {
 

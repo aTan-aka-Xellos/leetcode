@@ -3,7 +3,7 @@ package greedy.medium;
 /**
  * https://leetcode.com/problems/change-minimum-characters-to-satisfy-one-of-three-conditions/
  * Weekly Contest 225
- * With a tip from @Alex
+ * With a tip from @vitar
  */
 public class ChangeMinimumCharacters_1737 {
 

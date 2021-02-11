@@ -2,7 +2,7 @@ package dp.medium;
 
 /**
  * https://leetcode.com/problems/2-keys-keyboard/
- * Discussed with @Alex
+ * Discussed with @vitar
  */
 public class AKeysKeyboard_650 {
 
