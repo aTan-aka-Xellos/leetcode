@@ -39,9 +39,10 @@ public class LongestConsecutiveSequence_128 {
         for (int i = 0; i < n; i++) map.put(nums[i], i);
 
         for (int num: nums) {
-            if (map.containsKey(num - 1)) max = Math.max(max, UF.union(map.get(num), map.get(num - 1)));
-            if (map.containsKey(num + 1)) max = Math.max(max, UF.union(map.get(num), map.get(num + 1)));
+            if (map.containsKey(num - 1))
+                max = Math.max(max, UF.union(map.get(num), map.get(num - 1)));
         }
+
         return max;
     }
 
