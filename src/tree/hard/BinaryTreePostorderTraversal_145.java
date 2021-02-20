@@ -9,7 +9,11 @@ import java.util.Stack;
  */
 public class BinaryTreePostorderTraversal_145 {
 
-    public List<Integer> postorderTraversal(TreeNode root) {
+
+
+
+    // 07/04/2019
+    public List<Integer> postorderTraversal_v2(TreeNode root) {
 
         List<Integer> list = new ArrayList<>();
         Stack<TreeNode> stack = new Stack<>();
@@ -32,19 +36,22 @@ public class BinaryTreePostorderTraversal_145 {
         return list;
     }
 
-
-    public List<Integer> postorderTraversal_recursive(TreeNode root) {
+    // 02/19/2021
+    public List<Integer> postorderTraversal_v1(TreeNode root) {
         List<Integer> list = new ArrayList<>();
-
-        if (root != null) {
-            postorderTraversal(root.left);
-            postorderTraversal(root.right);
-            list.add(root.val);
-        }
+        traversal(root, list);
         return list;
     }
 
-    public class TreeNode {
+    void traversal(TreeNode node, List<Integer> list) {
+        if (node == null) return;
+
+        traversal(node.left,  list);
+        traversal(node.right, list);
+        list.add(node.val);
+    }
+
+    public static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
