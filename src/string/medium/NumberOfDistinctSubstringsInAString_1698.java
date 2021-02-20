@@ -9,7 +9,7 @@ import java.util.Set;
 public class NumberOfDistinctSubstringsInAString_1698 {
 
 
-    // O(N^2), @vital
+    // O(N^2), @vitar
     // 02/20/2021
     public int countDistinct_v3(String s) {
         long B = 31;
@@ -26,7 +26,7 @@ public class NumberOfDistinctSubstringsInAString_1698 {
     }
 
 
-    // O(N^3), @vital
+    // O(N^3), @vitar
     // 02/20/2021
     public int countDistinct_v2(String s) {
         Set<String> set = new HashSet<>();
