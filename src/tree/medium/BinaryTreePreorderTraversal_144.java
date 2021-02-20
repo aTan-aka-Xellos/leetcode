@@ -1,29 +1,49 @@
 package tree.medium;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+/**
+ * https://leetcode.com/problems/binary-tree-preorder-traversal/
+ */
 public class BinaryTreePreorderTraversal_144 {
 
+    // 02/17/2021
     public List<Integer> preorderTraversal(TreeNode root) {
-        List<Integer> list = new LinkedList<>();
-        if (root == null) return list;
+        List<Integer> list = new ArrayList<>();
+        traverse(root, list);
+        return list;
+    }
 
-        Stack<TreeNode> stack = new Stack<>();
-        stack.add(root);
+    void traverse(TreeNode node, List<Integer> list) {
+        if (node == null) return;
+        list.add(node.val);
+        traverse(node.left,  list);
+        traverse(node.right, list);
+    }
 
-        while (!stack.isEmpty()) {
-            TreeNode node = stack.pop();
+
+    // 02/17/2021
+    public List<Integer> preorderTraversal_v1(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        Stack<TreeNode> st = new Stack<>();
+        st.push(root);
+
+        while (!st.isEmpty()) {
+            TreeNode node = st.pop();
+            if (node == null) continue;
+
             list.add(node.val);
-            if (node.right != null) stack.push(node.right);
-            if (node.left  != null) stack.push(node.left);
+            st.push(node.right);
+            st.push(node.left);
         }
         return list;
     }
 
-    public class TreeNode {
-          int val;
+
+    public static class TreeNode {
+        int val;
         TreeNode left;
         TreeNode right;
         TreeNode(int x) {
