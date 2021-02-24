@@ -1,15 +1,33 @@
-package tree.hard;
+package tree.medium;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
 /**
- * Not optimal because need to reverse the result at the end.
+ * https://leetcode.com/problems/binary-tree-postorder-traversal
+ * A lot of pain to come up with approach
  */
 public class BinaryTreePostorderTraversal_145 {
 
+    // 02/24/2021
+    // solution from @jinwu
+    public List<Integer> postorderTraversal(TreeNode root) {
+        LinkedList<Integer> list = new LinkedList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
 
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pop();
+            if (node == null) continue;
+
+            list.addFirst(node.val);
+            stack.push(node.left);
+            stack.push(node.right);
+        }
+        return list;
+    }
 
 
     // 07/04/2019
@@ -50,6 +68,21 @@ public class BinaryTreePostorderTraversal_145 {
         traversal(node.right, list);
         list.add(node.val);
     }
+
+
+
+    List<Integer> list = new ArrayList<>();
+
+    public List<Integer> postorderTraversal_v3(TreeNode root) {
+        if (root != null) {
+            postorderTraversal_v3(root.left);
+            postorderTraversal_v3(root.right);
+            list.add(root.val);
+        }
+        return list;
+    }
+
+
 
     public static class TreeNode {
         int val;
