@@ -11,58 +11,58 @@ import java.util.Set;
 public class AlienDictionary_269 {
 
 
-    int[] state = new int[26];
-    Map<Character, Set<Character>> graph = new HashMap<>(); // TODO: new int[26][26]
+    int[][] map = new int[26][26];
 
-    // 03/03/2021
     public String alienOrder(String[] words) {
 
-        // collect all letters, in case if some - without edges <= TODO: could be simplified with "findEdge"?
-        for (String word : words) {
-            for (int j = 0; j < word.length(); j++) {
-                graph.computeIfAbsent(word.charAt(j), k -> new HashSet<>());
+        // point on itself, need for letters without edges
+        for (String w : words) {
+            for (int j = 0; j < w.length(); j++) {
+                map[w.charAt(j) - 'a'][w.charAt(j) - 'a'] = 2;
             }
         }
 
         for (int i = 1; i < words.length; i++) {
-            if (!findEdge(words[i], words[i - 1])) return "";
+            if (!findEdges(words[i], words[i - 1])) return "";
         }
 
         StringBuilder sb = new StringBuilder();
-        for (char character: graph.keySet()) {
-            if (!dfs(sb, character)) return "";
+        for (int i = 0; i < map.length; i++) {
+            if (map[i][i] == 0) continue;
+            if (!dfs(sb, i)) return "";
         }
         return sb.toString();
     }
 
     /**
-     * state = 1  -> checked and valid
-     * state = -1 -> already visited, loop detected
-     * state = 0  -> not checked or visited
+     * map = 2  -> edge present in the string,
+     * map = 1  -> checked and valid
+     * map = 0  -> not checked or visited
+     * map = -1 -> already visited, loop detected
      */
-    boolean dfs(StringBuilder sb, char character) {
-        if (state[character - 'a'] == -1) return false;
-        if (state[character - 'a'] ==  1) return true;
+    boolean dfs(StringBuilder sb, int i) {
+        if (map[i][i] == -1) return false;
+        if (map[i][i] ==  1) return true;
+        map[i][i] = -1; // mark visited, but not finished within this recursion
 
-        state[character - 'a'] = -1; // mark visited within this recursion
-
-        for (char c: graph.get(character)) {
-            if (!dfs(sb, c)) return false;
+        for (int j = 0; j < 26; j++) {
+            if (map[i][j] == 0 || j == i) continue;
+            if (!dfs(sb, j)) return false;
         }
 
-        state[character - 'a'] *= -1; // mark finished
-        sb.append(character);
+        map[i][i] = 1; // mark finished
+        sb.append((char)(i + 'a'));
         return true;
     }
 
-
-    boolean findEdge(String s1, String s2) {
-        for (int i = 0; i < Math.min(s1.length(), s2.length()); i++) {
+    boolean findEdges(String s1, String s2) {
+        for (int i = 0; i < s1.length() && i < s2.length(); i++) {
             if (s1.charAt(i) != s2.charAt(i)) {
-                graph.get(s1.charAt(i)).add(s2.charAt(i));
+                map[s1.charAt(i) - 'a'][s2.charAt(i) - 'a'] = 2;
                 return true;
             }
         }
-        return s1.length() >= s2.length(); // "aab", "aa" - invalid input, shorter should came first with the same prefix
+        // "aab", "aa" - invalid input, shorter should came first with the same prefix
+        return s1.length() >= s2.length();
     }
 }
