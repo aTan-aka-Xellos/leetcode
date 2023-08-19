@@ -32,6 +32,11 @@ public class IntAnagrams {
         System.out.println(6 ==  countAnagrams(new int[] {54275, 45572, 42575, 55427}));
         System.out.println(10 == countAnagrams(new int[] {54275, 45572, 42575, 55427, 55472}));
         System.out.println(15 == countAnagrams(new int[] {54275, 45572, 42575, 55427, 55472, 55724}));
+        System.out.println(1 ==  countAnagrams(new int[] {5005, 5050}));
+        System.out.println(1 ==  countAnagrams(new int[] {500700, 507000}));
+
+        System.out.println(1 ==  countAnagrams(new int[] {5005, 505}));
+        System.out.println(1 ==  countAnagrams(new int[] {5300, 530}));
     }
 
 
@@ -39,7 +44,7 @@ public class IntAnagrams {
         Map<Double, Integer> counts = new HashMap<>();
 
         for (int number : arr) {
-            double hash = getHash(number);
+            double hash = convert(number);
             counts.put(hash, counts.getOrDefault(hash, 0) + 1);
         }
 
@@ -49,14 +54,14 @@ public class IntAnagrams {
     // num = [4572, 7524]
     // hash(4572) = 31^4 + 31^5 + 31^7 + 31^2 = 27,542,167,744
     // hash(7524) = 31^7 + 31^5 + 31^2 + 31^4 = 27,542,167,744
-    private static double getHash(int num) {
+    private static long convert(int num) {
         long B = 31;
-        double hash = 0;
+        long hash = 0;
 
         while (num > 0) {
             int digit = num % 10;
             num /= 10;
-            hash += Math.pow(B, digit);
+            hash += (long) Math.pow(B, digit);
         }
         return hash;
     }
