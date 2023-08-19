@@ -15,19 +15,13 @@ import java.util.Map;
 public class IntAnagrams {
 
     /*
-    long B = 31;
-    long hash = 0;
-    hash = hash * B + s.charAt(j) - 'a' + 1;
-
     [45572]
-
     hash = 31 * 1
 
            26,439,622,160,671 // 31 ^ 9
     9,223,372,036,854,775,807 // Long max
 
     sum = n * (n - 1) / 2
-
      */
 
     public static void main(String[] args) {
@@ -52,8 +46,9 @@ public class IntAnagrams {
         return counts.values().stream().map(val -> val * (val - 1) / 2).mapToInt(Integer::intValue).sum();
     }
 
-    // num = [4572]
-    // hash = 31^4 + 31^5 + 31^7 + 31^2
+    // num = [4572, 7524]
+    // hash(4572) = 31^4 + 31^5 + 31^7 + 31^2 = 27,542,167,744
+    // hash(7524) = 31^7 + 31^5 + 31^2 + 31^4 = 27,542,167,744
     private static double getHash(int num) {
         long B = 31;
         double hash = 0;
