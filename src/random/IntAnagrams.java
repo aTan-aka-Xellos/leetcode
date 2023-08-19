@@ -1,5 +1,6 @@
 package random;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,35 +26,57 @@ public class IntAnagrams {
      */
 
     public static void main(String[] args) {
-        System.out.println(0 ==  countAnagrams(new int[] {}));
-        System.out.println(0 ==  countAnagrams(new int[] {54275}));
-        System.out.println(1 ==  countAnagrams(new int[] {54275, 45572}));
-        System.out.println(3 ==  countAnagrams(new int[] {54275, 45572, 42575}));
-        System.out.println(6 ==  countAnagrams(new int[] {54275, 45572, 42575, 55427}));
-        System.out.println(10 == countAnagrams(new int[] {54275, 45572, 42575, 55427, 55472}));
-        System.out.println(15 == countAnagrams(new int[] {54275, 45572, 42575, 55427, 55472, 55724}));
-        System.out.println(1 ==  countAnagrams(new int[] {5005, 5050}));
-        System.out.println(1 ==  countAnagrams(new int[] {500700, 507000}));
+        // expect true
+        test(0, countAnagrams(new int[] {}));
+        test(0, countAnagrams(new int[] {54275}));
+        test(1, countAnagrams(new int[] {54275, 45572}));
+        test(3, countAnagrams(new int[] {54275, 45572, 42575}));
+        test(6, countAnagrams(new int[] {54275, 45572, 42575, 55427}));
+        test(10, countAnagrams(new int[] {54275, 45572, 42575, 55427, 55472}));
+        test(15, countAnagrams(new int[] {54275, 45572, 42575, 55427, 55472, 55724}));
+        test(1, countAnagrams(new int[] {5005, 5050}));
+        test(1, countAnagrams(new int[] {500700, 507000}));
+        test(1, countAnagrams(new int[] {2147483647, 2144783647}));
 
-        System.out.println(1 ==  countAnagrams(new int[] {5005, 505}));
-        System.out.println(1 ==  countAnagrams(new int[] {5300, 530}));
+        // expect false
+        test(0, countAnagrams(new int[] {5005, 505}));
+        test(0, countAnagrams(new int[] {5300, 530}));
+        test(0, countAnagrams(new int[] {2147483647, 2144483647}));
+
+        // expect true
+        test(0, countAnagramsV2(new int[] {}));
+        test(0, countAnagramsV2(new int[] {54275}));
+        test(1, countAnagramsV2(new int[] {54275, 45572}));
+        test(3, countAnagramsV2(new int[] {54275, 45572, 42575}));
+        test(6, countAnagramsV2(new int[] {54275, 45572, 42575, 55427}));
+        test(10, countAnagramsV2(new int[] {54275, 45572, 42575, 55427, 55472}));
+        test(15, countAnagramsV2(new int[] {54275, 45572, 42575, 55427, 55472, 55724}));
+        test(1, countAnagramsV2(new int[] {5005, 5050}));
+        test(1, countAnagramsV2(new int[] {500700, 507000}));
+        test(1, countAnagramsV2(new int[] {2147483647, 2144783647}));
+
+        // expect false
+        test(0, countAnagramsV2(new int[] {5005, 505}));
+        test(0, countAnagramsV2(new int[] {5300, 530}));
+        test(0, countAnagramsV2(new int[] {2147483647, 2144483647}));
     }
 
 
+
     public static int countAnagrams(int[] arr) {
-        Map<Double, Integer> counts = new HashMap<>();
+        Map<Long, Integer> counts = new HashMap<>();
 
         for (int number : arr) {
-            double hash = convert(number);
-            counts.put(hash, counts.getOrDefault(hash, 0) + 1);
+            long result = convert(number);
+            counts.put(result, counts.getOrDefault(result, 0) + 1);
         }
 
         return counts.values().stream().map(val -> val * (val - 1) / 2).mapToInt(Integer::intValue).sum();
     }
 
     // num = [4572, 7524]
-    // hash(4572) = 31^4 + 31^5 + 31^7 + 31^2 = 27,542,167,744
-    // hash(7524) = 31^7 + 31^5 + 31^2 + 31^4 = 27,542,167,744
+    // convert(4572) = 31^4 + 31^5 + 31^7 + 31^2 = 27,542,167,744
+    // convert(7524) = 31^7 + 31^5 + 31^2 + 31^4 = 27,542,167,744
     private static long convert(int num) {
         long B = 31;
         long hash = 0;
@@ -66,4 +89,35 @@ public class IntAnagrams {
         return hash;
     }
 
+
+    public static int countAnagramsV2(int[] arr) {
+        Map<String, Integer> counts = new HashMap<>();
+
+        for (int number : arr) {
+            String asStr = convertToStr(number);
+            counts.put(asStr, counts.getOrDefault(asStr, 0) + 1);
+        }
+
+        return counts.values().stream().map(val -> val * (val - 1) / 2).mapToInt(Integer::intValue).sum();
+    }
+
+    private static String convertToStr(int num) {
+        int[] digits = new int[32];
+        Arrays.fill(digits, -1); // work-around to fix leading zero's issue
+
+        int pos = 0;
+        while (num > 0) {
+            digits[pos++] = num % 10;
+            num /= 10;
+        }
+
+        Arrays.sort(digits);
+        return Arrays.toString(digits); // return in form of string like "[0,0,1,3,7]"
+    }
+
+    private static void test(int expected, int actual) {
+        if (expected != actual) {
+            System.out.println(expected + " != " + actual);
+        }
+    }
 }
